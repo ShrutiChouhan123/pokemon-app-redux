@@ -20,8 +20,8 @@ const PokemonList = () => {
   // this code for pagignation
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const displayedPokemon = pokemonList.slice(startIndex, endIndex);
 
+  const displayedPokemon = pokemonList.slice(startIndex, endIndex);
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
@@ -31,8 +31,16 @@ const PokemonList = () => {
       <h1>Pokémon List</h1>
       <ul>
         {displayedPokemon.map((pokemon, id) => (
-          <div key={id} className="card" style={{ float: "left", width: "18rem" }}>
-            <img className="card-img-top" src={pokemon.url} alt={pokemon.name} />
+          <div
+            key={id}
+            className="card"
+            style={{ float: "left", width: "18rem" }}
+          >
+            <img
+              className="card-img-top"
+              // src={pokemon.sprites.front_default}
+              alt={pokemon.name}
+            />
             <div className="card-body">
               <h5 className="card-title">{pokemon.name}</h5>
             </div>
@@ -41,16 +49,26 @@ const PokemonList = () => {
       </ul>
 
       <div className="pagignation">
-        <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}  style={{borderRadius:"70px"}}>
-        <i class="fa fa-arrow-left" style={{fontSize:"36px",color:"black"}}></i>
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          style={{ borderRadius: "70px" }}
+        >
+          <i
+            class="fa fa-arrow-left"
+            style={{ fontSize: "36px", color: "black" }}
+          ></i>
         </button>
-        <span>  {currentPage} </span>
+        <span> {currentPage} </span>
         <button
           onClick={() => handlePageChange(currentPage + 1)}
           disabled={endIndex >= pokemonList.length}
-          style={{borderRadius:"70px"}}
+          style={{ borderRadius: "70px" }}
         >
-        <i class="fa fa-arrow-right" style={{fontSize:"36px",color:"black"}}></i>
+          <i
+            class="fa fa-arrow-right"
+            style={{ fontSize: "36px", color: "black" }}
+          ></i>
         </button>
       </div>
     </div>
