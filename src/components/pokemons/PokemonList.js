@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { fetchPokemon } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
+import { fetchPokemonList } from "../../redux/thunk";
 
 const PokemonList = () => {
   const [currentPage, setCurrentPage] = useState(1); // Start from page 1
@@ -10,7 +10,7 @@ const PokemonList = () => {
   const { pokemonList, error } = useSelector((state) => state.pokemon);
 
   useEffect(() => {
-    dispatch(fetchPokemon());
+    dispatch(fetchPokemonList());
   }, [dispatch]);
 
   if (error) {
@@ -22,9 +22,19 @@ const PokemonList = () => {
   const endIndex = startIndex + itemsPerPage;
 
   const displayedPokemon = pokemonList.slice(startIndex, endIndex);
+  // console.log(displayedPokemon);
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
+
+  // for  trying to load image.
+  // const pokemonData = {
+  //   sprites: {
+  //     front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png',
+  //   },
+  // };
+  // const spriteUrls = Object.values(pokemonData.sprites).filter(url => url && url.endsWith('.png'));
+  // console.log(spriteUrls);  
 
   return (
     <div>
@@ -36,18 +46,19 @@ const PokemonList = () => {
             className="card"
             style={{ float: "left", width: "18rem" }}
           >
-            <img
-              className="card-img-top"
-              // src={pokemon.sprites.front_default}
-              alt={pokemon.name}
-            />
             <div className="card-body">
               <h5 className="card-title">{pokemon.name}</h5>
             </div>
+              <img
+              src={pokemon.image}
+              className="card-img-top"
+              alt={pokemon.name}
+              style={{ width: "100%", height: "200px", objectFit: "cover" }}
+            />
+           
           </div>
         ))}
       </ul>
-
       <div className="pagignation">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
