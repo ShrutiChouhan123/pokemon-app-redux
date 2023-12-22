@@ -22,19 +22,9 @@ const PokemonList = () => {
   const endIndex = startIndex + itemsPerPage;
 
   const displayedPokemon = pokemonList.slice(startIndex, endIndex);
-  // console.log(displayedPokemon);
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
-  // for  trying to load image.
-  // const pokemonData = {
-  //   sprites: {
-  //     front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png',
-  //   },
-  // };
-  // const spriteUrls = Object.values(pokemonData.sprites).filter(url => url && url.endsWith('.png'));
-  // console.log(spriteUrls);  
 
   return (
     <div>
