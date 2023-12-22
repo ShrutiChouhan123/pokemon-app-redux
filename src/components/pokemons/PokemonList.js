@@ -40,7 +40,7 @@ const PokemonList = () => {
               <h5 className="card-title">{pokemon.name}</h5>
             </div>
               <img
-              src={pokemon.image}
+              src={pokemon.sprites.front_default}
               className="card-img-top"
               alt={pokemon.name}
               style={{ width: "100%", height: "200px", objectFit: "cover" }}

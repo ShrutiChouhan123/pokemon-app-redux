@@ -15,6 +15,7 @@ export const fetchPokemonList = () => async (dispatch) => {
     const pokemonData = await Promise.all(
       data.results.map(async (pokemon) => {
         const pokemonResponse = await fetch(pokemon.url);
+  
         if (!pokemonResponse.ok) {
           throw new Error("Failed to fetch Pokémon details");
         }
